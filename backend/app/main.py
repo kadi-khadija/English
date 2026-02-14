@@ -5,11 +5,12 @@ from app.database.session import engine
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="AI English Immersion Platform")
+app = FastAPI(title="AI English Immersion Platform",  version="0.1.0")
 
-app.include_router(auth.router)
-app.include_router(chat.router)
-app.include_router(feedback.router)
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(chat.router, prefix="/chat", tags=["Chat"])
+app.include_router(feedback.router, prefix="/feedback", tags=["Feedback"])
+
 
 
 @app.get("/")

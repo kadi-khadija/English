@@ -5,9 +5,9 @@ from app.models.user import User
 from app.schemas.user import UserCreate, UserResponse, UserLogin
 from app.core.security import hash_password, verify_password
 from app.core.jwt import create_access_token
-from fastapi import status
 
-router = APIRouter(prefix="/auth", tags=["Authentication"])
+router = APIRouter(tags=["Authentication"])
+
 
 @router.post("/register", response_model=UserResponse)
 def register(user: UserCreate, db: Session = Depends(get_db)):
